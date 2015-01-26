@@ -1,0 +1,64 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+
+
+<polymer-element name="todo-list" attributes="">
+  <template>
+  <style>
+  :host {
+    display: block;
+  }
+  .underline{
+    text-decoration: line-through;
+  }
+  </style>
+
+  <ol layout vertical>
+    <template id="task_list" repeat="{{ task in tasks }}">
+      <li class="{{ task.done ? 'underline':''}}">
+        <paper-checkbox for  task_id="{{task.id}}" checked={{task.done}}  on-click="{{completeTask}}">
+        </paper-checkbox>
+        {{ task.name }}
+      </li>
+
+      <hr/>
+    </template>
+  </ol>
+
+</template>
+<script>
+(function () {
+  Polymer({
+    ready: function () {
+      this.tasks = [
+      {
+        id:"1",
+        name:"HTML5 Boilerplate",
+        done: false
+      } ,
+      {
+        id:"2",
+        name:"Web Component Polyfills",
+        done: false
+      },
+      {
+        id:"3",
+        name:"Core Elements",
+        done: true
+      } ,
+      {
+        id:"4",
+        name:"Paper Elements",
+        done:false
+      } ,
+      {
+        id:"5",
+        name:"Polymer",
+        done:true
+      }
+      ];
+    }
+  });
+})();
+</script>
+</polymer-element>
