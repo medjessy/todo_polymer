@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 
 <polymer-element name="todo-list" attributes="">
@@ -24,41 +26,55 @@
       <hr/>
     </template>
   </ol>
-
-</template>
-<script>
-(function () {
-  Polymer({
-    ready: function () {
-      this.tasks = [
-      {
-        id:"1",
-        name:"HTML5 Boilerplate",
-        done: false
-      } ,
-      {
-        id:"2",
-        name:"Web Component Polyfills",
-        done: false
+  <div  layout horizontal>
+    <paper-input flex id="newTodo" label="New todo"></paper-input>
+    <paper-button raised on-click={{addTask}}>
+      <core-icon icon="add"></core-icon>
+      Add
+      </paper-button
+    </div>
+  </template>
+  <script>
+  (function () {
+    Polymer({
+      ready: function () {
+        this.tasks = [
+        {
+          id:"1",
+          name:"HTML5 Boilerplate",
+          done: false
+        } ,
+        {
+          id:"2",
+          name:"Web Component Polyfills",
+          done: false
+        },
+        {
+          id:"3",
+          name:"Core Elements",
+          done: true
+        } ,
+        {
+          id:"4",
+          name:"Paper Elements",
+          done:false
+        } ,
+        {
+          id:"5",
+          name:"Polymer",
+          done:true
+        }
+        ];
       },
-      {
-        id:"3",
-        name:"Core Elements",
-        done: true
-      } ,
-      {
-        id:"4",
-        name:"Paper Elements",
-        done:false
-      } ,
-      {
-        id:"5",
-        name:"Polymer",
-        done:true
+      addTask: function(){
+        this.tasks.push({
+          id:this.tasks.length +1,
+          name: this.$.newTodo.value,
+          done: false
+        });
+        this.$.newTodo.value = "";
       }
-      ];
-    }
-  });
-})();
-</script>
+    });
+  })();
+  </script>
 </polymer-element>
